@@ -10,6 +10,17 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+function validatePassword(){
+  var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
+  if(password.value != confirm_password.value) {
+    alert("Passwords Don't Match");
+    return false;
+  } else {
+    return true;
+  }
+}
+	</script>
 	<style type="text/css">
 	body {
 		color: #fff;
@@ -107,7 +118,7 @@
 </head>
 <body>
 	<div class="signup-form">
-		<form method="post">
+		<form method="post" onSubmit="return validatePassword()">
 			<h2>Sign Up</h2>
 			<p>Please fill in this form to create an account!</p>
 			<hr>
@@ -132,20 +143,20 @@
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-					<input id="phoneNumber" type="phone" class="form-control"
+					<input id="phoneNumber" type="phone" class="form-control" pattern="[0-9]{10}"
 					name="customer_phone1" placeholder="Phone Number" required="required">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-					<input id="alternatePhoneNumber" type="phone" class="form-control" name="customer_phone2" placeholder="Alternate Phone Number" required="required">
+					<input id="alternatePhoneNumber" type="phone" class="form-control" pattern="[0-9]{10}" name="customer_phone2" placeholder="Alternate Phone Number" required="required">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-					<input id="password" type="password" class="form-control" name="customer_password" placeholder="Password" required="required">
+					<input id="password" type="password" class="form-control" name="customer_password" minlength="8" placeholder="Password" required="required">
 				</div>
 			</div>
 			<small class="form-text text-muted mb-4">Minimum 8 characters in length</small>
@@ -155,7 +166,7 @@
 						<i class="fa fa-lock"></i>
 						<i class="fa fa-check"></i>
 					</span>
-					<input type="password" class="form-control" name="customer_confirmpassword" placeholder="Confirm Password" required="required">
+					<input id="confirm_password" type="password" class="form-control" name="customer_confirmpassword" placeholder="Confirm Password" required="required">
 				</div>
 			</div>
 			<div class="form-group">
